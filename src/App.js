@@ -1,14 +1,34 @@
 
+import { connect, useSelector } from 'react-redux';
 import './App.css';
 import TrelloList from './component/TrelloList';
 
+
 function App() {
+  const lists = useSelector(state => state.lists);
+ 
   return (
-    <div>
-      <h2>Hello Rahat</h2>
-      <TrelloList title='test'/>
+    <div style={styles.listContainer}>
+      
+      {
+        lists.map(list => (<TrelloList title={list.title} cards={list.cards} key={list.id} />))
+      }
+      
     </div>
   );
+};
+
+
+const styles = {
+  listContainer:{
+    display: 'flex',
+    flexDirection: "row"
+  }
 }
 
-export default App;
+const mapStateToProps = state =>({
+  lists: state.lists
+});
+
+
+export default connect(mapStateToProps) (App);

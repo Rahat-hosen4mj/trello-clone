@@ -1,7 +1,7 @@
 import { createStore } from "redux";
+import rootReudcer from '../reducers';
 
-const reducer = () =>{}
 
-const store = createStore(reducer);
+const store = createStore(rootReudcer);
 
 export default store;
