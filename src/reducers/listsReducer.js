@@ -25,6 +25,10 @@ const initialState = [
                 id: 1,
                 text: 'We created a static list 4'
             },
+            {
+                id: 3,
+                text: 'We created a static list 5'
+            },
         ]
     },
 ]

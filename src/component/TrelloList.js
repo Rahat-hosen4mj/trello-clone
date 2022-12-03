@@ -20,6 +20,7 @@ const styles = {
         backgroundColor: '#dfe3e6',
         borderRadius: 3,
         width: 300,
+        height: "100%",
         padding:8,
         marginRight: 10
     }
