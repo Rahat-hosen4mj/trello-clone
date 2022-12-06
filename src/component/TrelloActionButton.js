@@ -36,6 +36,9 @@ handleInputChange = e =>{
 
         if(text) {
             dispatch(addList(text))
+            this.setState({
+                text: ''
+            })
         }
 
         return;
@@ -44,7 +47,7 @@ handleInputChange = e =>{
     handleAddCard = () =>{
         const {dispatch, listId} = this.props;
         const {text } = this.state;
-        console.log(text, listId)
+        // console.log(text, listId)
         if(text){
             dispatch(addCard(listId, text));
             

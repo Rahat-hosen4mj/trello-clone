@@ -3,12 +3,20 @@ import { connect, useSelector } from 'react-redux';
 import './App.css';
 import TrelloActionButton from './component/TrelloActionButton';
 import TrelloList from './component/TrelloList';
+import {DragDropContext} from 'react-beautiful-dnd'
 
 
 function App() {
   const lists = useSelector(state => state.lists);
- 
+  
+  const onDragEnd = () =>{
+    // todo reorderding logic
+  }
+
   return (
+    <DragDropContext onDragEnd={onDragEnd}>
+    <div>
+    <h2>trello Clone</h2>
     <div style={styles.listContainer}>
       
       {
@@ -16,6 +24,8 @@ function App() {
       }
       <TrelloActionButton list />
     </div>
+    </div>
+    </DragDropContext>
   );
 };
 

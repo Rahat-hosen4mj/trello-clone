@@ -1,36 +1,36 @@
 import { CONSTANT } from "../action";
 
 let listId = 2;
-let cardId = 3;
+let cardId = 5;
 const initialState = [
     {
         title: 'To Do',
-        id: 0,
+        id: `listID-${0}`,
         cards: [
             {
-                id: 0,
+                id: `cardID-${0}`,
                 text: 'We created a static list'
             },
             {
-                id: 1,
+                id: `cardID-${1}`,
                 text: 'We created a static list 2'
             },
         ]
     },
     {
         title: 'Doing',
-        id: 1,
+        id: `listID-${1}`,
         cards: [
             {
-                id: 0,
+                id: `cardID-${2}`,
                 text: 'We created a static list 3'
             },
             {
-                id: 1,
+                id: `cardID-${3}`,
                 text: 'We created a static list 4'
             },
             {
-                id: 3,
+                id: `cardID-${4}`,
                 text: 'We created a static list 5'
             },
         ]
@@ -43,7 +43,7 @@ const listsReducer = (state = initialState, action) =>{
         const newList ={
             title: action.payload,
             cards: [],
-            id: listId
+            id: `listID-${listId}`
         }
         listId +=1
         return [...state, newList];
@@ -51,12 +51,12 @@ const listsReducer = (state = initialState, action) =>{
         case CONSTANT.ADD_CARD:
             const newCard ={
                 text: action.payload.text,
-                id: cardId
+                id: `cardID-${cardId}`
             }
             console.log('form reducer', action.payload.listId)
             cardId += 1;
             const newState = state.map(list => {
-                console.log('list', list.id)
+                // console.log('list', list.id)
                 if(list.id === action.payload.listId){
                    return{
                     ...list,
