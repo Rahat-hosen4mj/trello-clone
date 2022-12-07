@@ -48,12 +48,12 @@ const listsReducer = (state = initialState, action) =>{
         listId +=1
         return [...state, newList];
 
-        case CONSTANT.ADD_CARD:
+        case CONSTANT.ADD_CARD: {
             const newCard ={
                 text: action.payload.text,
                 id: `cardID-${cardId}`
             }
-            console.log('form reducer', action.payload.listId)
+            // console.log('form reducer', action.payload.listId)
             cardId += 1;
             const newState = state.map(list => {
                 // console.log('list', list.id)
@@ -68,8 +68,30 @@ const listsReducer = (state = initialState, action) =>{
             });
 
             return newState;
-        default:
+        }
+            
+        case CONSTANT.DRAG_HAPPENED:
+                const {
+                    droppableIdStart,
+                    droppableIdEnd,
+                    droppableIndexStart,
+                    droppableIndexEnd,
+                    draggableId
+                } = action.payload;
+                const newState = [...state];
+
+                // in the same list
+                if(droppableIdStart === droppableIdEnd){
+                    const list = state.find(list => droppableIdStart === list.id);
+                    const card = list.cards.splice(droppableIndexStart, 1);
+                    list.cards.splice(droppableIndexEnd,0, ...card)
+                }
+                return newState;
+        
+            default:
             return state;
+        
+       
     }
 }
 
