@@ -1,16 +1,32 @@
 
-import { connect, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import TrelloActionButton from './component/TrelloActionButton';
 import TrelloList from './component/TrelloList';
 import {DragDropContext} from 'react-beautiful-dnd'
+import { sort } from './action';
 
 
 function App() {
   const lists = useSelector(state => state.lists);
+  const dispatch = useDispatch()
   
-  const onDragEnd = () =>{
+  const onDragEnd = (result) =>{
     // todo reorderding logic
+    // console.log(result)
+    const {destination, source, draggableId} = result;
+    // console.log(destination, source, droppableId)
+    if(!destination){
+      return;
+    }
+
+    dispatch(sort(
+      source.droppableId,
+      destination.droppableId,
+      source.index,
+      destination.index,
+      draggableId
+    ))
   }
 
   return (
